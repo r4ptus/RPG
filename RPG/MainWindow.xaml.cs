@@ -1,4 +1,5 @@
 ﻿using ClassLibrary1.EventArgs;
+using ClassLibrary1.Models;
 using ClassLibrary1.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,11 @@ namespace RPG
             tradeScreen.Owner = this;
             tradeScreen.DataContext = _gameSession;
             tradeScreen.ShowDialog();
+        }
+        private void OnClick_Craft(object sender, RoutedEventArgs e)
+        {
+            Recipe recipe = ((FrameworkElement)sender).DataContext as Recipe;
+            _gameSession.CraftItemUsing(recipe);
         }
     }
 }
