@@ -294,11 +294,6 @@ namespace ClassLibrary1.ViewModels
             }
         }
 
-        public void UseCurrentConsumable()
-        {
-            CurrentPlayer.UseCurrentConsumable();
-        }
-
         private void GetMonsterAtLocation()
         {
             CurrentMonster = CurrentLocation.GetMonster();
@@ -311,6 +306,11 @@ namespace ClassLibrary1.ViewModels
 
         public void AttackCurrentMonster()
         {
+            if (CurrentMonster == null)
+            {
+                return;
+            }
+
             if (CurrentPlayer.CurrentWeapon == null)
             {
                 RaiseMessage("You must select a weapon, to attack.");
@@ -327,6 +327,14 @@ namespace ClassLibrary1.ViewModels
             else
             {
                 CurrentMonster.UseCurrentWeaponOn(CurrentPlayer);
+            }
+        }
+
+        public void UseCurrentConsumable()
+        {
+            if (CurrentPlayer.CurrentConsumable != null)
+            {
+                CurrentPlayer.UseCurrentConsumable();
             }
         }
 
